@@ -204,12 +204,6 @@
     background:linear-gradient(90deg,var(--cream),var(--white));
     transition:width .12s ease-out;
   }
-  .count{
-    margin:0;font-size:1rem;color:var(--white-faint);
-    font-variant-numeric:tabular-nums;letter-spacing:.03em;
-  }
-  .count b{color:var(--white);font-size:1.15rem}
-
   .reveal{margin-top:1.7rem}
   .reveal .msg{
     margin:0;
@@ -352,7 +346,6 @@
     </span>
 
     <div class="meter" role="progressbar" aria-label="폭죽 충전" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0"><i></i></div>
-    <p class="count"><b>0</b> / 25</p>
 
     <div class="reveal" aria-live="polite" hidden>
       <p class="msg">한국 첫 인턴생활 고생했어~ 축하해 <span class="heart">♥️</span></p>
@@ -464,7 +457,6 @@
   var lionBtn = document.querySelector('.tap-btn');
   var fill = document.querySelector('.meter > i');
   var meter = document.querySelector('.meter');
-  var countB = document.querySelector('.count b');
   var reveal = document.querySelector('.reveal');
   var replayBtn = document.querySelector('.replay');
   var gift = document.querySelector('.gift');
@@ -487,7 +479,6 @@
     if (done) return;
     taps = Math.min(GOAL, taps + 1);
     fill.style.width = (taps / GOAL * 100) + '%';
-    countB.textContent = taps;
     meter.setAttribute('aria-valuenow', taps);
     if (taps / GOAL > 0.58) lionBtn.classList.add('wob');
     if (taps >= GOAL){ done = true; celebrate(); }
@@ -546,7 +537,6 @@
   function replay(){
     taps = 0; done = false;
     fill.style.width = '0%';
-    countB.textContent = '0';
     meter.setAttribute('aria-valuenow', 0);
     reveal.classList.remove('show');
     reveal.hidden = true;
